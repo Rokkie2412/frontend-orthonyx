@@ -7,7 +7,8 @@ import type {
   UserProfilesData, 
   LabDataResponse, 
   AddLabDataTypes,
-  AddUserTypes
+  AddUserTypes,
+  UserProfile
 } from '../Types';
 
 const _connectionRefused = (errorMessage: string): void => {
@@ -43,7 +44,7 @@ export const signUpApiCall = async (requestBody: SignUpRequest): Promise<SignRes
       body: JSON.stringify({ firstName, lastName, email, password, dob, phone  })
     });
 
-    const responseData: SignResponse = await res.json();
+    const responseData = await res.json();
 
     if (!res.ok) {
       throw new Error(responseData.message || 'Failed to sign up');
@@ -68,7 +69,7 @@ export const signInApiCall = async (email: string, password: string): Promise<Si
       body: JSON.stringify({ email, password })
     });
 
-    const responseData: SignResponse = await res.json();
+    const responseData = await res.json();
 
     if (!res.ok) {
       throw new Error(responseData.message || 'Failed to sign in');
@@ -99,7 +100,7 @@ export const getUserProfile = async (userId: string): Promise<UserProfilesData> 
       },
     });
 
-    const responseData: UserProfilesData = await res.json();
+    const responseData = await res.json();
 
     if (!res.ok) {
       throw new Error(responseData.message || 'Failed to retrive Data');
@@ -130,7 +131,7 @@ export const getLabDataByUserId = async (patientId: string, limit?: number): Pro
       },
     });
 
-    const responseData: LabDataResponse = await res.json();
+    const responseData = await res.json();
 
     if (!res.ok) {
       throw new Error(responseData.message || 'Failed to retrive Data');
@@ -181,7 +182,7 @@ export const addNewLabData = async ({
       })
     });
 
-    const responseData: LabDataResponse = await res.json();
+    const responseData = await res.json();
 
     if (!res.ok) {
       throw new Error(responseData.message || 'Failed to retrive Data');
@@ -194,7 +195,7 @@ export const addNewLabData = async ({
   }
 }
 
-export const getAllUser = async () => {
+export const getAllUser = async (): Promise<UserProfile[]> => {
   const { cookieAccessToken, apiKey } = getItemFromCookies();
   const url = `http://localhost:3005/user/all`
 
