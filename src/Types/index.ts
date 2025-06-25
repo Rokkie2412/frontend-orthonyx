@@ -114,3 +114,8 @@ export type AddUserTypes = {
   phone: string,
   gender: string
 }
+
+export type GetAllUser = {
+  message: string,
+  user: UserProfile[]
+}

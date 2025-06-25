@@ -1,14 +1,14 @@
 import Cookies from 'js-cookie';
 
-import type { 
-  SignResponse, 
-  SignUpRequest, 
-  CookiesType, 
-  UserProfilesData, 
-  LabDataResponse, 
+import type {
   AddLabDataTypes,
   AddUserTypes,
-  UserProfile
+  CookiesType,
+  GetAllUser,
+  LabDataResponse,
+  SignResponse,
+  SignUpRequest,
+  UserProfilesData
 } from '../Types';
 
 const _connectionRefused = (errorMessage: string): void => {
@@ -195,7 +195,7 @@ export const addNewLabData = async ({
   }
 }
 
-export const getAllUser = async (): Promise<UserProfile[]> => {
+export const getAllUser = async (): Promise<GetAllUser> => {
   const { cookieAccessToken, apiKey } = getItemFromCookies();
   const url = `http://localhost:3005/user/all`
 

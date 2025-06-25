@@ -23,12 +23,13 @@ const getAllPatience = async (
   setPatients: React.Dispatch<React.SetStateAction<UserProfile[]>>,
   setError: React.Dispatch<React.SetStateAction<string | null>>,
   setModal: React.Dispatch<React.SetStateAction<string>>
-) => {
+): Promise<void> => {
   setError('')
   setModal("LOADING_MODAL")
   try {
     const response = await getAllUser();
-    setPatients(response.users); // ⬅️ langsung simpan array users-nya
+    console.log(response)
+    setPatients(response.user);
   } catch (error) {
     setError((error as Error)?.message)
   } finally{
