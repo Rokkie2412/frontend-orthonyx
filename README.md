@@ -43,3 +43,28 @@ npm install
 ```bash
 npm run dev
 ```
+
+## 🧠 How to Run the Server
+backend server available on this repository [BackEnd Server Repository](https://github.com/Rokkie2412/backend-orthonyx).
+
+## 🚀 Getting Started (Local Development)
+Follow these steps to run the project locally:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Rokkie2412/backend-orthonyx.git
+cd backend-orthonyx
+```
+
+### 2. Install depencies using NPM
+
+```bash
+npm install
+```
+
+### 3. Run development code
+
+```bash
+npm run start
+```
