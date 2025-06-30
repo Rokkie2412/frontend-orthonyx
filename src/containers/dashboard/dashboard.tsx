@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
   CartesianGrid,
@@ -15,9 +16,8 @@ import { useUser } from '../../context'
 import { ErrorView, LabMatrixCard, LoadingModal } from '../../components';
 import type { CustomTooltipProps, LabData, TooltipEntry, UserProfile, UserProfilesData } from '../../Types';
 import { getLabDataByUserId, getUserProfile } from '../../utils/apiCall';
-import { useParams } from 'react-router-dom';
 
-const getDob = (dob: string) => {
+const getDob = (dob: string): string => {
   return new Date(dob).toLocaleDateString('id-ID', {
     day: '2-digit',
     month: 'long',
@@ -28,9 +28,7 @@ const getDob = (dob: string) => {
 const capitalize = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 
-const _renderHeader = (
-  user: UserProfile
-): React.ReactElement => {
+const _renderHeader = (user: UserProfile): React.ReactElement => {
   const fields = [
     { label: 'First Name', value: capitalize(user.firstName || '') },
     { label: 'Last Name', value: capitalize(user.lastName || '') },
@@ -58,10 +56,7 @@ const _renderHeader = (
   );
 };
 
-
-
-
-const _renderMatrixCard = (data: LabData) => (
+const _renderMatrixCard = (data: LabData): React.ReactElement => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
     <LabMatrixCard
       title="Blood Pressure"
@@ -120,7 +115,7 @@ const getUnitByKey = (key: string): string => {
   }
 };
 
-const CustomTooltip = (props: CustomTooltipProps) => {
+const CustomTooltip = (props: CustomTooltipProps): React.ReactElement | null => {
   if (props.active && props.payload && props.payload.length) {
     return (
       <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
@@ -133,10 +128,11 @@ const CustomTooltip = (props: CustomTooltipProps) => {
       </div>
     );
   }
+
   return null;
 };
 
-const LabMetricsChart = ({ data }: { data: LabData[] }) => {
+const LabMetricsChart = ({ data }: { data: LabData[] }): React.ReactElement => {
   const chartData = data.map(item => ({
     date: format(new Date(item.date), 'd MMM yyyy'),
     glucose: item.results.glucose,
@@ -219,14 +215,14 @@ const LabMetricsChart = ({ data }: { data: LabData[] }) => {
   );
 };
 
-const Dashboard = () => {
+const Dashboard = (): React.ReactElement => {
   const { patientid } = useParams<{ patientid: string }>();
   const { user, setUser } = useUser()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [labData, setLabData] = useState<LabData[]>([]);
   const [isError, setIsError] = useState<string>('')
 
-  const fetchUserProfiles = async () => {
+  const fetchUserProfiles = async (): Promise<void> => {
     setIsLoading(true)
 
     try {
