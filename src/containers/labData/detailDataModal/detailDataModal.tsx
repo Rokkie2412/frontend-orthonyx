@@ -1,5 +1,7 @@
-import { Modal } from "../../../components";
 import { format } from "date-fns";
+
+import { Modal } from "../../../components";
+
 import type { DetailDataModalProps } from "./detailDataModal.types";
 
 const DetailDataModal = ({

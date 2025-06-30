@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { ModalProps } from './dataModal.types';
 import { MdClose } from 'react-icons/md';
+
+import type { ModalProps } from './dataModal.types';
 
 const _renderXButton = (usingCloseButton: boolean, onClose: () => void): React.ReactElement | null => {
   if (usingCloseButton === false) {

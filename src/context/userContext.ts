@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+
 import type { UserProfile } from '../Types'
 
 export interface UserContextType {

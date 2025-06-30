@@ -149,7 +149,7 @@ const _renderDownloadButtonCsv = (labData: LabData[]) => {
 
   return (
     <button
-      onClick={() => handleDownloadCSV(labData)}
+      onClick={handleDownloadCSV(labData)}
       className="cursor-pointer font-semibold bg-teal-500 hover:bg-teal-600 text-white text-sm sm:text-base py-1.5 px-3 sm:py-2 sm:px-4  lg:text-lg rounded-lg shadow-sm transition"
     >
       <span className="flex items-center gap-2">Export Data <IoDocumentTextOutline size={20} /></span>

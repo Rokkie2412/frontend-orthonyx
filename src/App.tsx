@@ -35,7 +35,6 @@ const App = (): React.ReactElement => {
   const [user, setUser] = useState<UserProfile | undefined>(undefined)
   const location = useLocation()
   const validRoutesTopBar = [
-    // cocokkan dengan 2 parameter dinamis: /dashboard/:userid/:patientid
     /^\/dashboard\/[^/]+\/[^/]+$/,
     /^\/lab-data\/[^/]+\/[^/]+$/,
     /^\/profile\/[^/]+\/[^/]+$/

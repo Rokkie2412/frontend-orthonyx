@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { DateInput, InputField, LoadingModal, Logo } from '../../components/index.ts';
 import { signUpApiCall } from '../../utils/apiCall.ts';
 import { validationSchema } from '../../utils/general.ts';
+
 import type { FormikSignUp } from './signup.type.ts';
 
 const _renderLeftPanel = () => {
@@ -24,7 +25,7 @@ const _renderLeftPanel = () => {
   )
 }
 
-const _renderRightPanel = (formik: FormikProps<FormikSignUp>) => {
+const _renderRightPanel = (formik: FormikProps<FormikSignUp>): React.ReactElement => {
   return (
     <div className="flex-1 flex items-center justify-center bg-white p-8">
       <div className="w-full max-w-md">
@@ -115,12 +116,10 @@ const _renderRightPanel = (formik: FormikProps<FormikSignUp>) => {
   )
 }
 
-const signUp = async (
-  values: FormikSignUp,
-  formikHelpers: FormikHelpers<FormikSignUp>,
+const signUp = (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   navigate: NavigateFunction
-) => {
+) => async (values: FormikSignUp, formikHelpers: FormikHelpers<FormikSignUp>): Promise<void> => {
   setIsLoading(true);
   try {
     const res = await signUpApiCall(values);
@@ -156,7 +155,7 @@ const signUp = async (
   }
 };
 
-const SignUpPage = () => {
+const SignUpPage = (): React.ReactElement => {
   const navigate: NavigateFunction = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -172,7 +171,7 @@ const SignUpPage = () => {
       dob: new Date(),
       phone: ''
     },
-    onSubmit: (values, formikHelpers) => signUp(values, formikHelpers, setIsLoading, navigate),
+    onSubmit: signUp(setIsLoading, navigate),
   });
 
   return (

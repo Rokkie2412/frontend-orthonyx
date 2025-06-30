@@ -72,13 +72,12 @@ const _renderLeftPanel = (formik: FormikProps<SignInFormik>) => (
   </div>
 )
 
-const _signIn = async (
-  values: SignInFormik,
-  formikHelpers: FormikHelpers<SignInFormik>,
+const _signIn = (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   navigate: NavigateFunction
-) => {
+) => async (values: SignInFormik, formikHelpers: FormikHelpers<SignInFormik>): Promise<void> => {
   setIsLoading(true);
+
   try {
     const res = await signInApiCall(values.email, values.password);
     if (res.token) {
@@ -100,7 +99,7 @@ const _signIn = async (
   }
 };
 
-const SignInPage = () => {
+const SignInPage = (): React.ReactElement => {
   const navigate: NavigateFunction = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -112,7 +111,7 @@ const SignInPage = () => {
       email: '',
       password: ''
     },
-    onSubmit: (values, formikHelpers) => _signIn(values, formikHelpers, setIsLoading, navigate)
+    onSubmit: _signIn(setIsLoading, navigate)
   });
 
   return (

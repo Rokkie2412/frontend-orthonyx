@@ -9,14 +9,12 @@ import { AddLabDataValidationSchema } from '../../../utils/general'
 import type { addLabDataModalProps, FormikPropsData } from './addLabDataModal.types'
 import { useParams } from 'react-router-dom'
 
-const _handleSubmit = async (
-  values: FormikPropsData,
-  formikHelpers: FormikHelpers<FormikPropsData>,
+const _handleSubmit = (
   onCloseFn: () => void,
   onSuccess: () => void,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
   patientId: string
-) => {
+) => async (values: FormikPropsData, formikHelpers: FormikHelpers<FormikPropsData>) => {
   setIsLoading(true);
   try {
     await addNewLabData({
@@ -63,9 +61,7 @@ const AddLabDataModal = ({ isOpen, onCloseFn, onSuccess }: addLabDataModalProps)
       }
     },
     validationSchema: AddLabDataValidationSchema,
-    onSubmit: (values, formikHelpers) => _handleSubmit(
-      values, formikHelpers, onCloseFn, onSuccess, setIsLoading, patientId
-    )
+    onSubmit: _handleSubmit(onCloseFn, onSuccess, setIsLoading, patientId)
   })
 
   return (

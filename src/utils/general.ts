@@ -37,7 +37,7 @@ export const cookiesSetting = (): Cookies.CookieAttributes => ({
   expires: 1,
 })
 
-export const handleDownloadCSV = (labData: LabData[]) => {
+export const handleDownloadCSV = (labData: LabData[]) => () => {
   const formattedData = labData.map((item) => ({
     Date: format(new Date(item.date), 'yyyy-MM-dd'),
     Glucose: item.results.glucose,

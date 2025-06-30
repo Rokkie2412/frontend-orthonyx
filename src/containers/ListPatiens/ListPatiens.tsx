@@ -54,7 +54,7 @@ const _onCloseModalFn = (setModal: React.Dispatch<React.SetStateAction<string>>)
   setModal('')
 }
 
-const ListPatients = () => {
+const ListPatients = (): React.ReactElement => {
   const { setUser } = useUser()
   const { cookieUserId } = getItemFromCookies()
   const navigate: NavigateFunction = useNavigate()
@@ -66,7 +66,7 @@ const ListPatients = () => {
     getAllPatience(setPatients, setError, setModal)
   }, [])
 
-  const _renderEmptyState = () => {
+  const _renderEmptyState = (): React.ReactElement => {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-12rem)]">
         <div className="flex flex-col sm:flex-row justify-between items-center rounded-lg gap-4 mb-6">

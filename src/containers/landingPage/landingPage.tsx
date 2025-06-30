@@ -1,7 +1,8 @@
+import React from "react"
 import { Link } from 'react-router-dom';
 import { FaHeartbeat } from 'react-icons/fa';
 
-const LandingPage = () => {
+const LandingPage = (): React.ReactElement => {
   return (
     <div className="min-h-screen bg-gradient-to-tl from-blue-50 via-blue-100 to-teal-200 flex items-center justify-center px-6 py-12">
       <div className="max-w-3xl text-center animate-fade-in">

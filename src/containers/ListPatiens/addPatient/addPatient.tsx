@@ -25,7 +25,7 @@ const _addDataUser = (
   }
 }
 
-const _renderDropdown = (formik: FormikProps<FormikPropsData>) => {
+const _renderDropdown = (formik: FormikProps<FormikPropsData>): React.ReactElement => {
   return (
     <div className="w-full">
       <label htmlFor="gender" className="block mb-1 text-sm font-medium text-gray-700">
@@ -51,7 +51,7 @@ const _renderDropdown = (formik: FormikProps<FormikPropsData>) => {
 };
 
 
-const AddPatient = ({isOpen,onCloseFn, onSuccess}: AddPatientProps) => {
+const AddPatient = ({ isOpen, onCloseFn, onSuccess }: AddPatientProps): React.ReactElement => {
   const [loading, setLoading] = useState(false)
 
   const formik = useFormik({

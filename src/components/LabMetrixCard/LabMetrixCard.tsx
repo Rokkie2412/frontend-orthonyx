@@ -1,4 +1,3 @@
-// components/LabMetricCard.tsx
 import React from 'react';
 
 import type { LabMetricCardProps } from './LabMetrixCard.types';

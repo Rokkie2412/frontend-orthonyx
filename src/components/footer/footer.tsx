@@ -1,6 +1,7 @@
+import React from 'react';
 import { FaReact } from 'react-icons/fa';
 
-const Footer = () => {
+const Footer = (): React.ReactElement => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200 py-6 mt-auto fixed bottom-0 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

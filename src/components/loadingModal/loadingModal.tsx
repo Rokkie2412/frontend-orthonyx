@@ -2,7 +2,9 @@ import React from 'react';
 
 import type { LoadingModalProps } from './loadingModal.types'
 
-const LoadingModal: React.FC<LoadingModalProps> = ({ isOpen, message = 'Loading' }) => {
+const LoadingModal = (
+  { isOpen, message = 'Loading' }: LoadingModalProps
+): React.ReactElement | null => {
   if (!isOpen) return null;
 
   return (
