@@ -68,3 +68,7 @@ npm install
 ```bash
 npm run start
 ```
+
+## 👥 Credits
+
+Thanks to [@Orthonyx Admin](https://github.com/admin-orthonyx) for give me advice in this project🎉🎉.
