@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
-import type { UserProfile } from './Types'
 import { UserContext } from './context'
-
-import { Footer, TopBarNavigation, Toaster } from './components'
-import { Dashboard, LabData, LandingPage, ProtectedRoute, SignIn, SignUp, NotFound, ListPatients } from './containers'
+import { Footer, TopBarNavigation, Toaster } from './shared'
+import { Dashboard, LabData, LandingPage, ProtectedRoute, SignIn, SignUp, NotFound, ListPatients } from './pages'
+import type { UserProfile } from './shared/types'
 
 const _renderProtectedRoutesDashboard = (): React.ReactElement => {
   return (
