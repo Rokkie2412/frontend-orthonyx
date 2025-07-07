@@ -32,8 +32,10 @@ const _renderProtectedRoutesListPatients = (): React.ReactElement => {
 
 const App = (): React.ReactElement => {
   const [user, setUser] = useState<UserProfile | undefined>(undefined)
+  const [patiendId, setPatiendId] = useState<string>('')
   const location = useLocation()
   const validRoutesTopBar = [
+    /^\/list-patients\/[^/]/,
     /^\/dashboard\/[^/]+\/[^/]+$/,
     /^\/lab-data\/[^/]+\/[^/]+$/,
     /^\/profile\/[^/]+\/[^/]+$/
@@ -43,7 +45,7 @@ const App = (): React.ReactElement => {
   const shouldHideTopBar = !validRoutesTopBar.some(route => route.test(location.pathname))
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, patiendId, setPatiendId }}>
       {!shouldHideTopBar && <TopBarNavigation />}
       <Routes>
         <Route path='/' element={<LandingPage />} />

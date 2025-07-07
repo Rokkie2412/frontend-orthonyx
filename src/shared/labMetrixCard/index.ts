@@ -1,1 +1,1 @@
-export {default} from './LabMetrixCard'
+export {default} from './labMetrixCard'

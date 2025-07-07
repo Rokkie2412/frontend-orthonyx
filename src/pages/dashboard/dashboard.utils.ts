@@ -1,3 +1,5 @@
+import type { LabData } from '../../shared/types';
+import { format } from 'date-fns';
 import {connectionRefused, getItemFromCookies} from '../../shared/utils'
 
 import type {LabDataResponse, UserProfilesData} from './dashboard.types'
@@ -63,3 +65,11 @@ export const getLabDataByUserId = async (patientId: string, limit?: number): Pro
     throw new Error((err as Error)?.message || 'Something Went Wrong Please Refresh The Page');
   }
 }
+
+export const chartData = (data: LabData[]) => data.map(item => ({
+  date: format(new Date(item.date), 'd MMM yyyy'),
+  glucose: item.results.glucose,
+  cholesterol: item.results.cholesterol.total,
+  systolic: item.results.bloodPressure.systolic,
+  diastolic: item.results.bloodPressure.diastolic,
+}));

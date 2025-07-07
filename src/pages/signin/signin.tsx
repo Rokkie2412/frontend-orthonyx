@@ -85,7 +85,7 @@ const _signIn = (
 
       Cookies.set('accessToken', res.token?.accessToken, cookiesSetting());
 
-      Cookies.set('userId', JSON.stringify(res.user?.id), cookiesSetting());
+      Cookies.set('userId', res.user?.id, cookiesSetting());
 
       Cookies.set('apiKey', res.token?.apiKey, cookiesSetting());
 

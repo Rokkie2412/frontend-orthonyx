@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { LabMetricCardProps } from './LabMetrixCard.types';
+import type { LabMetricCardProps } from './labMetrixCard.types';
 
 const LabMetricCard= ({
   title,

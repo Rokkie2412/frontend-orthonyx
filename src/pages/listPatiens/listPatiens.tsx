@@ -56,7 +56,7 @@ const _onCloseModalFn = (setModal: React.Dispatch<React.SetStateAction<string>>)
 }
 
 const ListPatients = (): React.ReactElement => {
-  const { setUser } = useUser()
+  const { setUser, setPatiendId } = useUser()
   const { cookieUserId } = getItemFromCookies()
   const navigate: NavigateFunction = useNavigate()
   const [patients, setPatients] = React.useState<UserProfile[]>([])
@@ -80,7 +80,7 @@ const ListPatients = (): React.ReactElement => {
   }
 
   return (
-    <div className="px-4 sm:px-8 py-6 max-w-screen-xl mx-auto">
+    <div className="px-4 py-20 sm:px-8 py-6 max-w-screen-xl mx-auto">
       <div className="flex flex-wrap w-full justify-between items-center mb-6 gap-4">
         <h1 className="text-2xl font-bold text-gray-800">Patient List</h1>
         <button 
@@ -105,6 +105,7 @@ const ListPatients = (): React.ReactElement => {
             <button
               className="cursor-pointer mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md text-sm font-medium transition"
               onClick={() => {
+                setPatiendId(patient._id || '');
                 setUser(patient)
                 navigate(`/dashboard/${cookieUserId}/${patient._id}`)
               }}

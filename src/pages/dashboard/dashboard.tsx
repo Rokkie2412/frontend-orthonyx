@@ -101,7 +101,6 @@ const _renderMatrixDashboard = (data: LabData): React.ReactElement => {
   );
 };
 
-
 const getUnitByKey = (key: string): string => {
   switch (key) {
     case 'glucose':
@@ -133,11 +132,9 @@ const CustomTooltip = (props: CustomTooltipProps): React.ReactElement | null => 
   return null;
 };
 
-const LabMetricsChart = ({ data }: { data: LabData[] }): React.ReactElement => {
+const LabMetricsChartBloodPreasure = ({ data }: { data: LabData[] }): React.ReactElement => {
   const chartData = data.map(item => ({
     date: format(new Date(item.date), 'd MMM yyyy'),
-    glucose: item.results.glucose,
-    cholesterol: item.results.cholesterol.total,
     systolic: item.results.bloodPressure.systolic,
     diastolic: item.results.bloodPressure.diastolic,
   }));
@@ -145,7 +142,7 @@ const LabMetricsChart = ({ data }: { data: LabData[] }): React.ReactElement => {
   return (
     <div className="mt-12 bg-white p-6 rounded-xl shadow-md hover:scale-102 transition duration-300">
       <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">
-        {data.length > 0 ? `Lab Metrics Last ${data.length} Tests` : 'No Data Available Please Add Data in Lab Data'}
+        {data.length > 0 ? `Lab Blood Preasure Result From Last ${data.length} Tests` : 'No Data Available Please Add Data in Lab Data'}
       </h3>
 
       <ResponsiveContainer width="100%" height={350}>
@@ -167,36 +164,14 @@ const LabMetricsChart = ({ data }: { data: LabData[] }): React.ReactElement => {
             wrapperStyle={{ fontSize: '12' }}
           />
 
-          {/* Blood Sugar Line */}
-          <Line
-            type="monotone"
-            dataKey="glucose"
-            stroke="#ec4899"
-            strokeWidth={3}
-            dot={{ fill: '#ec4899', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#ec4899', strokeWidth: 2 }}
-            name="Blood Sugar"
-          />
-
-          {/* Cholesterol Line */}
-          <Line
-            type="monotone"
-            dataKey="cholesterol"
-            stroke="#facc15"
-            strokeWidth={3}
-            dot={{ fill: '#facc15', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#facc15', strokeWidth: 2 }}
-            name="Cholesterol"
-          />
-
           {/* Systolic BP Line */}
           <Line
             type="monotone"
             dataKey="systolic"
-            stroke="#60a5fa"
+            stroke="#008080"
             strokeWidth={3}
-            dot={{ fill: '#60a5fa', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#60a5fa', strokeWidth: 2 }}
+            dot={{ fill: '#008080', strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: '#008080', strokeWidth: 2 }}
             name="Systolic BP"
           />
 
@@ -209,6 +184,99 @@ const LabMetricsChart = ({ data }: { data: LabData[] }): React.ReactElement => {
             dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
             activeDot={{ r: 6, stroke: '#3b82f6', strokeWidth: 2 }}
             name="Diastolic BP"
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+
+const LabMetricsChartcholesterol = ({ data }: { data: LabData[] }): React.ReactElement => {
+  const chartData = data.map(item => ({
+    date: format(new Date(item.date), 'd MMM yyyy'),
+    cholesterol: item.results.cholesterol.total,
+  }));
+
+  return (
+    <div className="mt-12 bg-white p-6 rounded-xl shadow-md hover:scale-102 transition duration-300">
+      <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">
+        {data.length > 0 ? `Lab Cholesterol From Last ${data.length} Tests` : 'No Data Available Please Add Data in Lab Data'}
+      </h3>
+
+      <ResponsiveContainer width="100%" height={350}>
+        <LineChart
+          data={chartData}
+        >
+          <CartesianGrid strokeDasharray="4 4" stroke="#f0f0f0" />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 11 }}
+            stroke="#666"
+          />
+          <YAxis
+            tick={{ fontSize: 11 }}
+            stroke="#666"
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            wrapperStyle={{ fontSize: '12' }}
+          />
+
+          {/* Systolic BP Line */}
+          <Line
+            type="monotone"
+            dataKey="cholesterol"
+            stroke="#facc15"
+            strokeWidth={3}
+            dot={{ fill: '#facc15', strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: '#facc15', strokeWidth: 2 }}
+            name="Cholesterol"
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+const LabMetricsChartglucose = ({ data }: { data: LabData[] }): React.ReactElement => {
+  const chartData = data.map(item => ({
+    date: format(new Date(item.date), 'd MMM yyyy'),
+    glucose: item.results.glucose,
+  }));
+
+  return (
+    <div className="mt-12 bg-white p-6 rounded-xl shadow-md hover:scale-102 transition duration-300">
+      <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">
+        {data.length > 0 ? `Lab Glucose Result From ${data.length} Tests` : 'No Data Available Please Add Data in Lab Data'}
+      </h3>
+
+      <ResponsiveContainer width="100%" height={350}>
+        <LineChart
+          data={chartData}
+        >
+          <CartesianGrid strokeDasharray="4 4" stroke="#f0f0f0" />
+          <XAxis
+            dataKey="date"
+            tick={{ fontSize: 11 }}
+            stroke="#666"
+          />
+          <YAxis
+            tick={{ fontSize: 11 }}
+            stroke="#666"
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            wrapperStyle={{ fontSize: '12' }}
+          />
+          <Line
+            type="monotone"
+            dataKey="glucose"
+            stroke="#ec4899"
+            strokeWidth={3}
+            dot={{ fill: '#ec4899', strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: '#ec4899', strokeWidth: 2 }}
+            name="Blood Sugar"
           />
         </LineChart>
       </ResponsiveContainer>
@@ -251,7 +319,9 @@ const Dashboard = (): React.ReactElement => {
         {isLoading && <LoadingModal isOpen={isLoading} message="Loading Data..." />}
         {user && _renderHeader(user)}
         {!isError && _renderMatrixDashboard(labData[0])}
-        {!isError && <LabMetricsChart data={labData} />}
+        {!isError && <LabMetricsChartcholesterol data={labData} />}
+        {!isError && <LabMetricsChartBloodPreasure data={labData} />}
+        {!isError && <LabMetricsChartglucose data={labData} />}
         {isError && <ErrorView error={isError} />}
       </div>
     </div>
