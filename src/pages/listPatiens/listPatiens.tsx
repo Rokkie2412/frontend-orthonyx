@@ -106,7 +106,6 @@ const ListPatients = (): React.ReactElement => {
               className="cursor-pointer mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md text-sm font-medium transition"
               onClick={() => {
                 setUser(patient)
-                sessionStorage.setItem('patientid', patient._id || '')
                 navigate(`/dashboard/${cookieUserId}/${patient._id}`)
               }}
             >

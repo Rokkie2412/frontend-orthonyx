@@ -3,9 +3,9 @@ import Cookies from 'js-cookie';
 import type { CookiesType } from "./utils.types";
 
 export const getItemFromCookies = (): CookiesType => {
-  const cookieUserId = Cookies.get('userId')?.replace(/"/g, '').trim() || '';
-  const cookieAccessToken = Cookies.get('accessToken')?.replace(/"/g, '').trim() || '';
-  const apiKey = Cookies.get('apiKey')?.replace(/"/g, '').trim() || '';
+  const cookieUserId = Cookies.get('userId') || '';
+  const cookieAccessToken = Cookies.get('accessToken') || '';
+  const apiKey = Cookies.get('apiKey') || '';
 
   return {
     cookieUserId,

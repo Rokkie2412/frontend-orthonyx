@@ -177,7 +177,7 @@ const _renderAddDataButton = (
 
 const LabResultPreview = (): React.ReactElement => {
   const params = useParams<{ patientid?: string }>();
-  const patientId = params.patientid || sessionStorage.getItem('patientid') || '';
+  const patientId = params.patientid || '';
   const [isModalOpen, setIsModalOpen] = useState<string>('');
   const [selectedItem, setSelectedItem] = useState<LabData | null>(null);
   const [labData, setLabData] = useState<LabData[]>([]);

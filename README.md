@@ -11,7 +11,7 @@ This project utilizes the following libraries to extend functionality:
 - **formik** – Simplifies form state management, validation, and submission in React.
 - **yup** – Schema builder used with Formik for form validation.
 - **framer-motion** – Provides declarative animations for React components to enhance user experience.
-- **js-cookie** – Enables easy manipulation of browser cookies for authentication or session storage.
+- **js-cookie** – Enables easy manipulation of browser cookies for authenticationstorage.
 - **papaparse** – Parses and converts data between CSV and JavaScript formats (used for exporting data).
 - **react-router-dom** – Handles client-side routing and navigation within the React application.
 - **react-dom** – React package for rendering components to the DOM.

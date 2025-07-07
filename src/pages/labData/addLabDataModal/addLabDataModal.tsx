@@ -41,7 +41,7 @@ const _handleSubmit = (
 
 const AddLabDataModal = ({ isOpen, onCloseFn, onSuccess }: addLabDataModalProps): React.ReactElement => {
   const params = useParams<{ patientid?: string }>();
-  const patientId = params.patientid || sessionStorage.getItem('patientid') || '';
+  const patientId = params.patientid || '';
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const formik = useFormik<FormikPropsData>({
